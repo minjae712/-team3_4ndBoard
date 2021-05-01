@@ -20,10 +20,12 @@ public class UserDAO {
 
 	public void createUser(UserVO vo) {
 		System.out.println("유저 저장~");
-		em.merge(vo);
+		em.persist(vo);
 	}
 	
 	public void changePassword(UserVO vo) {
-		em.merge(vo);				
+		UserVO user = em.find(UserVO.class, vo.getId());
+		user.setPassword(vo.getPassword());
+		em.merge(user);				
 	}
 }

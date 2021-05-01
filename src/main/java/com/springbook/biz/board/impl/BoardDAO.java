@@ -23,6 +23,9 @@ public class BoardDAO {
 	
 	// 글 수정
 	public void updateBoard(BoardVO vo) {
+		BoardVO board = em.find(BoardVO.class, vo.getSeq());
+		board.setTitle(vo.getTitle());
+		board.setContent(vo.getContent());
 		em.merge(vo);
 	}
 
